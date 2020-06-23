@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="YtoMp3.Loading">
+  <ContentView.Content>
+      <AbsoluteLayout>
+            <AbsoluteLayout.Resources>
+                <Style TargetType="BoxView">
+                    <Setter Property="BackgroundColor" Value="LightGray"/>
+                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="WidthRequest" Value="20"/>
+                    <Setter Property="HeightRequest" Value="20"/>
+                </Style>
+            </AbsoluteLayout.Resources>
+            <BoxView x:Name="first" AbsoluteLayout.LayoutBounds="0, 0, 20, 20" />
+            <BoxView x:Name="second" AbsoluteLayout.LayoutBounds="0, 100, 20, 20"/>
+            <BoxView x:Name="third" AbsoluteLayout.LayoutBounds="50, 100, 20, 20"/>
+        </AbsoluteLayout>
+  </ContentView.Content>
+</ContentView>

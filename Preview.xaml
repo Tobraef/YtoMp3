@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:this="clr-namespace:YtoMp3"
+             mc:Ignorable="d"
+             x:Class="YtoMp3.Preview"
+             x:Name="thisPage">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <this:NegateConverter x:Key="Negation"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout>
+            <Frame CornerRadius="5" BackgroundColor="White" BorderColor="Black">
+                <StackLayout Padding="1">
+                <ListView x:Name="listView"
+                      HasUnevenRows="True" SeparatorColor="Red">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Button">
+                                            <Setter Property="HorizontalOptions" Value="Center"/>
+                                            <Setter Property="VerticalOptions" Value="Center"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Title}" FontSize="Medium"/>
+                                        <Label Text="{Binding Duration}" FontSize="Small"/>
+                                        <Label Text="{Binding Author}" FontSize="Small"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                        <Button Text="{Binding PlayButton}" 
+                                            Command="{Binding Path=ViewModel.PlaySound, Source={x:Reference thisPage}}"
+                                            CommandParameter="{Binding .}"
+                                            FontSize="Micro"/>
+                                        <Button Text="Download"
+                                            Command="{Binding Path=ViewModel.Download, Source={x:Reference thisPage}}"
+                                            CommandParameter="{Binding .}"
+                                            FontSize="Micro"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Go back" FontSize="Small" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"
+                            IsEnabled="True" x:Name="backButton" VerticalOptions="Center"/>
+                        <Button Text="Stop track" IsEnabled="{Binding IsEnabled, Source={x:Reference backButton}}" Clicked="Button_Clicked_1"
+                                FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="5" BackgroundColor="White" BorderColor="Black" Padding="5">
+                <StackLayout>
+                    <Label Text="{Binding State}" FontSize="Small"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
